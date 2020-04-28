@@ -67,7 +67,7 @@ Input_file <- setRefClass("Input_file",
                             f_load = function(...){
                               "function \\code{load()} \n
                                By defaut : \\code{load( paste0( path, version, file ), envir = .GlobalEnv, ...)} \n
-                               \\subsection{Example} { \\code{load( 'SalesnFcst.Rdata' )} is now replaced by\n
+                               \\subsection{Example}{\\code{load( 'SalesnFcst.Rdata' )} is now replaced by\n
                                \\code{Input_file( file = 'SalesnFcst.Rdata', process = 'SalesnFcst' )$f_load()}  (version and path = NULL)}"
                               insert_relation()
                               load( file = paste0(path, version, file), envir = .GlobalEnv, ...)
@@ -76,7 +76,7 @@ Input_file <- setRefClass("Input_file",
                             f_read.csv = function(...){
                               "function \\code{read.csv()} \n
                               By default : \\code{read.csv( paste0( path, version, file ), ... )} \n
-                              \\subsection{Example} { \\code{read.csv( 'Dependencies_Map/dependencies.csv' )} is now replaced by\n
+                              \\subsection{Example}{\\code{read.csv( 'Dependencies_Map/dependencies.csv' )} is now replaced by\n
                               \\code{Input_file( file = 'dependencies.csv', path = 'Dependencies_Map/', process = 'SalesnFcst')$f_read.csv()}  (version = NULL) }"
                               insert_relation()
                               read.csv(paste0(path, version, file),...)
@@ -85,7 +85,7 @@ Input_file <- setRefClass("Input_file",
                             f_read.xlsx = function(...){
                               "function \\code{read.xlsx()} from openxlsx package\n
                                By default : \\code{openxlsx::read.xlsx( paste0( path, version, file ), ... )} \n
-                               \\subsection{Example} { \\code{read.xlsx( paste0( PathLoad, Version, 'Baselines_and_forecastable.xlsx' ), sheet = 'SkuMatrix', colNames = TRUE  )} is now replaced by\n
+                               \\subsection{Example}{\\code{read.xlsx( paste0( PathLoad, Version, 'Baselines_and_forecastable.xlsx' ), sheet = 'SkuMatrix', colNames = TRUE  )} is now replaced by\n
                                \\code{Input_file( file = 'Baselines_and_forecastable.xlsx', path = PathLoad, version = Version, process = 'SalesnFcst' )$f_read.xlsx( sheet = 'SkuMatrix', colNames = TRUE )} }"
                               insert_relation()
                               openxlsx::read.xlsx(paste0(path, version, file),...)
@@ -135,7 +135,7 @@ Input_db <- setRefClass("Input_db",
                           f_dbGetQuery = function(){
                             "function \\code{dbGetQuery()} from DBI package\n
                              By default : \\code{dbGetQuery( conn, query )}\n
-                             \\subsection{Example} { \\code{par_loc <- dbGetQuery( SCDatabase, 'select * from PAR_LOC_geoMapping' ) } is now replaced by\n
+                             \\subsection{Example}{ \\code{par_loc <- dbGetQuery( SCDatabase, 'select * from PAR_LOC_geoMapping' ) } is now replaced by\n
                             \\code{par_loc <- Input_db( conn = SCDataBase, query = 'select * from PAR_LOC_geoMapping', process = 'SLA', table = 'PAR_LOC_geoMapping')$f_dbGetQuery()  } }"
                             insert_relation()
                             dbGetQuery(conn, query)
@@ -177,7 +177,7 @@ Input_df <- setRefClass("Input_df",
                                  f_return = function(...){
                                    "simply returns the data of the object \n
                                    By default : \\code{return(data)}\n
-                                   \\subsection{Example} { \\code{MasterData2 <- MasterData}  is now replaced by\n
+                                   \\subsection{Example}{\\code{MasterData2 <- MasterData}  is now replaced by\n
                                    \\code{MasterData2 <- Input_df( name = 'MasterData', data = MasterData, process = 'Future_Forecast' )$f_return()} }"
                                    insert_relation()
                                    return(data)
@@ -186,8 +186,7 @@ Input_df <- setRefClass("Input_df",
                                  f_add = function(){
                                    "does nothing, just allows to keep track of the new data frame used as input\n
                                     to be used when in a process, a new data frame is used and there is no need to return it\n
-                                    \\subsection{Example}{ \\c }
-                                    "
+                                    \\subsection{Example}{ \\code{Input_df( name = 'MasterData', data = MasterData, process = 'Future_Forecast' )$f_add()}}"
                                    insert_relation()
                                  }
 
@@ -232,7 +231,7 @@ Output_file <- setRefClass("Output_file",
                              f_save = function(...){
                               "function \\code{save()} \n
                               By default : \\code{save( data, paste0(path, version, file), ... )}\n
-                               \\subsection{Example} { \\code{save( MasterData, file =  paste0( PathLoad, Version, 'SalesnFcst.Rdata' ) )} is now replaced by\n
+                               \\subsection{Example}{\\code{save( MasterData, file =  paste0( PathLoad, Version, 'SalesnFcst.Rdata' ) )} is now replaced by\n
                                \\code{Output_file(data = MasterData, file = 'SalesnFcst.Rdata', path = PathLoad, version = Version, process = 'SalesnFcst')$f_save()} }"
                                insert_relation()
                                save(data, file = paste0(path, version, file),...)
@@ -284,7 +283,7 @@ Output_db <- setRefClass("Output_db",
                            f_DBConnectWrite = function(...){
                              "function \\code{DBConnectWrite()} from MyFunnew.R script in data preparation program (a source must be done beforehand to MyFun.R script)\n
                              By defaut : \\code{DBConnectWrite( conn, data, table, FUN_DB )}\n
-                             \\subsection{Example} { \\code{LogWrite <- DBConnectWrite( SCDataBase, QVlocs, 'PAR_LOC_geoMapping', MyConSCDIRwrite )} is now replaced by\n
+                             \\subsection{Example}{\\code{LogWrite <- DBConnectWrite( SCDataBase, QVlocs, 'PAR_LOC_geoMapping', MyConSCDIRwrite )} is now replaced by\n
                              \\code{LogWrite <- Output_db( conn = SCDatabase, data = QVlocs, table = 'PAR_LOC_geoMapping', FUN_DB = MyConSCDIRWrite )$f_DBConnectWrite()} } "
                              insert_relation()
                              DBConnectWrite(conn, data, table, FUN_DB, ...)
@@ -293,7 +292,7 @@ Output_db <- setRefClass("Output_db",
                            f_Myappend = function(){
                              "function \\code{Myappend()} from MyFunnew.R script in data preparation program (a source must be done beforehand to MyFun.R script)\n
                              By defaut : \\code{Myappend(conn, data, table, datecolumn, lastmonths)}\n
-                             \\subsection{Example} { \\code{LogWrite <- Myappend(SCDataBase, ISL, 'cal_isl', 'DATE' , (pstmnths2run+1) )} is now replaced by\n
+                             \\subsection{Example}{\\code{LogWrite <- Myappend(SCDataBase, ISL, 'cal_isl', 'DATE' , (pstmnths2run+1) )} is now replaced by\n
                              \\code{LogWrite <- Output_db( conn = SCDatabase, data = ISL, table = 'cal_isl', datecolumn = 'DATE', lastmonths = (pstmnths2run+1))$f_MyAppend()} } "
                              insert_relation()
                              Myappend(conn, data, table, datecolumn, lastmonths)
@@ -302,7 +301,7 @@ Output_db <- setRefClass("Output_db",
                            f_dbSendUpdate = function(...){
                              "function \\code{dbSendQuery()} from DBI package.\n
                              By defaut : \\code{dbSendUpdate( conn, query, ...)} \n
-                             \\subsection{Example}{ \\code{dbSendUpdate( SCDataBase, 'INSERT INTO sla_history SELECT * FROM slatemp' )} is now replaced by\n
+                             \\subsection{Example}{\\code{dbSendUpdate( SCDataBase, 'INSERT INTO sla_history SELECT * FROM slatemp' )} is now replaced by\n
                              \\code{Output_db( conn = SCDatabase, query = 'INSERT INTO sla_history SELECT * FROM slatemp', table = 'sla_history', process = 'SLA' )$dbSendUpdate()} }"
                              insert_relation()
                              dbSendUpdate(conn, query,...)
@@ -311,7 +310,7 @@ Output_db <- setRefClass("Output_db",
                            f_dbWriteTable = function(...){
                              "function \\code{dbWriteTable()} from DBI package.\n
                               By defaut : \\code{dbWriteTable( conn, table, data, ... )}\n
-                              \\subsection{Example} { \\code{dbWriteTable(SCDataBase, 'PAR_LOC_geoMapping', QVlocs, row.names = FALSE, append = FALSE,overwrite = TRUE, date = TRUE, ora.number = ORANUMBER)} is now replaced by \n
+                              \\subsection{Example}{\\code{dbWriteTable(SCDataBase, 'PAR_LOC_geoMapping', QVlocs, row.names = FALSE, append = FALSE,overwrite = TRUE, date = TRUE, ora.number = ORANUMBER)} is now replaced by \n
                              \\code{Output_db( conn = SCDataBase, table = 'PAR_LOC_geoMapping', data = QVlocs, process = Total_Supply )$f_dbWriteTable( row.names = FALSE, append = FALSE,overwrite = TRUE, date = TRUE, ora.number = ORANUMBER )} } "
                              insert_relation()
                              dbWriteTable(conn, table, data, ...)
@@ -353,9 +352,9 @@ Output_df <- setRefClass("Output_df",
                                   f_return = function(...){
                                     "simply returns the data of the object :\n
                                      By default: \\code{return(data)}\n
-                                     \\subsection{Example} { \\code{MasterData <- left_join( MasterData, Adj_CoV_Result, by = c('DMDUNIT','LOC','DMDGROUP','STARTDATE') ) } is now replace by\n
+                                     \\subsection{Example}{\\code{MasterData <- left_join( MasterData, Adj_CoV_Result, by = c('DMDUNIT','LOC','DMDGROUP','STARTDATE') ) } is now replace by\n
                                     ( \\code{new_data <- left_join( MasterData, Adj_CoV_Result, by = c('DMDUNIT','LOC','DMDGROUP','STARTDATE'))} )\n
-                                    \\code{MasterData <- Output_df( name = 'MasterData', data = new_data, process = 'CoV' )$f_return()} }"
+                                    \\code{MasterData <- Output_df( name = 'MasterData', data = new_data, process = 'CoV' )$f_return()}}"
                                     insert_relation()
                                     return(data)
                                   },
@@ -363,7 +362,7 @@ Output_df <- setRefClass("Output_df",
                                   f_add = function(){
                                     "does nothing, just allows to keep track of the new data frame created as output\n
                                     to be used when in a process, a new data frame is created and there is no need to return it\n
-                                    \\subsection{Example}{ \\code{Output_df( name = 'MasterData', data = new_data, process = 'CoV' )$f_add()} }
+                                    \\subsection{Example}{\\code{Output_df( name = 'MasterData', data = new_data, process = 'CoV' )$f_add()}}
                                     "
                                     insert_relation()
                                   }

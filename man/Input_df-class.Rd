@@ -25,14 +25,13 @@ Inputs loaded in the data preparation program from data frames previously genera
 
                                     to be used when in a process, a new data frame is used and there is no need to return it
 
-                                    \subsection{Example}{ \c }
-                                    }
+                                    \subsection{Example}{ \code{Input_df( name = 'MasterData', data = MasterData, process = 'Future_Forecast' )$f_add()}}}
 
 \item{\code{f_return(...)}}{simply returns the data of the object 
 
                                    By default : \code{return(data)}
 
-                                   \subsection{Example} { \code{MasterData2 <- MasterData}  is now replaced by
+                                   \subsection{Example}{\code{MasterData2 <- MasterData}  is now replaced by
 
                                    \code{MasterData2 <- Input_df( name = 'MasterData', data = MasterData, process = 'Future_Forecast' )$f_return()} }}
 }}

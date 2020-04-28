@@ -35,15 +35,23 @@ Outputs saved in the data preparation program in data base's tables
 
                              By defaut : \code{DBConnectWrite( conn, data, table, FUN_DB )}
 
-                             \subsection{Example} { \code{LogWrite <- DBConnectWrite( SCDataBase, QVlocs, 'PAR_LOC_geoMapping', MyConSCDIRwrite )} is now replaced by
+                             \subsection{Example}{\code{LogWrite <- DBConnectWrite( SCDataBase, QVlocs, 'PAR_LOC_geoMapping', MyConSCDIRwrite )} is now replaced by
 
                              \code{LogWrite <- Output_db( conn = SCDatabase, data = QVlocs, table = 'PAR_LOC_geoMapping', FUN_DB = MyConSCDIRWrite )$f_DBConnectWrite()} } }
+
+\item{\code{f_Myappend()}}{function \code{Myappend()} from MyFunnew.R script in data preparation program (a source must be done beforehand to MyFun.R script)
+
+                             By defaut : \code{Myappend(conn, data, table, datecolumn, lastmonths)}
+
+                             \subsection{Example}{\code{LogWrite <- Myappend(SCDataBase, ISL, 'cal_isl', 'DATE' , (pstmnths2run+1) )} is now replaced by
+
+                             \code{LogWrite <- Output_db( conn = SCDatabase, data = ISL, table = 'cal_isl', datecolumn = 'DATE', lastmonths = (pstmnths2run+1))$f_MyAppend()} } }
 
 \item{\code{f_dbSendUpdate(...)}}{function \code{dbSendQuery()} from DBI package.
 
                              By defaut : \code{dbSendUpdate( conn, query, ...)} 
 
-                             \subsection{Example}{ \code{dbSendUpdate( SCDataBase, 'INSERT INTO sla_history SELECT * FROM slatemp' )} is now replaced by
+                             \subsection{Example}{\code{dbSendUpdate( SCDataBase, 'INSERT INTO sla_history SELECT * FROM slatemp' )} is now replaced by
 
                              \code{Output_db( conn = SCDatabase, query = 'INSERT INTO sla_history SELECT * FROM slatemp', table = 'sla_history', process = 'SLA' )$dbSendUpdate()} }}
 
@@ -51,16 +59,8 @@ Outputs saved in the data preparation program in data base's tables
 
                               By defaut : \code{dbWriteTable( conn, table, data, ... )}
 
-                              \subsection{Example} { \code{dbWriteTable(SCDataBase, 'PAR_LOC_geoMapping', QVlocs, row.names = FALSE, append = FALSE,overwrite = TRUE, date = TRUE, ora.number = ORANUMBER)} is now replaced by 
+                              \subsection{Example}{\code{dbWriteTable(SCDataBase, 'PAR_LOC_geoMapping', QVlocs, row.names = FALSE, append = FALSE,overwrite = TRUE, date = TRUE, ora.number = ORANUMBER)} is now replaced by 
 
                              \code{Output_db( conn = SCDataBase, table = 'PAR_LOC_geoMapping', data = QVlocs, process = Total_Supply )$f_dbWriteTable( row.names = FALSE, append = FALSE,overwrite = TRUE, date = TRUE, ora.number = ORANUMBER )} } }
-
-\item{\code{f_Myappend()}}{function \code{Myappend()} from MyFunnew.R script in data preparation program (a source must be done beforehand to MyFun.R script)
-
-                             By defaut : \code{Myappend(conn, data, table, datecolumn, lastmonths)}
-
-                             \subsection{Example} { \code{LogWrite <- Myappend(SCDataBase, ISL, 'cal_isl', 'DATE' , (pstmnths2run+1) )} is now replaced by
-
-                             \code{LogWrite <- Output_db( conn = SCDatabase, data = ISL, table = 'cal_isl', datecolumn = 'DATE', lastmonths = (pstmnths2run+1))$f_MyAppend()} } }
 }}
 

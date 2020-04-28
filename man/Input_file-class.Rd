@@ -27,7 +27,7 @@ Inputs loaded in the data preparation program from files
 
                                By defaut : \code{load( paste0( path, version, file ), envir = .GlobalEnv, ...)} 
 
-                               \subsection{Example} { \code{load( 'SalesnFcst.Rdata' )} is now replaced by
+                               \subsection{Example}{\code{load( 'SalesnFcst.Rdata' )} is now replaced by
 
                                \code{Input_file( file = 'SalesnFcst.Rdata', process = 'SalesnFcst' )$f_load()}  (version and path = NULL)}}
 
@@ -35,7 +35,7 @@ Inputs loaded in the data preparation program from files
 
                               By default : \code{read.csv( paste0( path, version, file ), ... )} 
 
-                              \subsection{Example} { \code{read.csv( 'Dependencies_Map/dependencies.csv' )} is now replaced by
+                              \subsection{Example}{\code{read.csv( 'Dependencies_Map/dependencies.csv' )} is now replaced by
 
                               \code{Input_file( file = 'dependencies.csv', path = 'Dependencies_Map/', process = 'SalesnFcst')$f_read.csv()}  (version = NULL) }}
 
@@ -47,7 +47,7 @@ Inputs loaded in the data preparation program from files
 
                                By default : \code{openxlsx::read.xlsx( paste0( path, version, file ), ... )} 
 
-                               \subsection{Example} { \code{read.xlsx( paste0( PathLoad, Version, 'Baselines_and_forecastable.xlsx' ), sheet = 'SkuMatrix', colNames = TRUE  )} is now replaced by
+                               \subsection{Example}{\code{read.xlsx( paste0( PathLoad, Version, 'Baselines_and_forecastable.xlsx' ), sheet = 'SkuMatrix', colNames = TRUE  )} is now replaced by
 
                                \code{Input_file( file = 'Baselines_and_forecastable.xlsx', path = PathLoad, version = Version, process = 'SalesnFcst' )$f_read.xlsx( sheet = 'SkuMatrix', colNames = TRUE )} }}
 }}

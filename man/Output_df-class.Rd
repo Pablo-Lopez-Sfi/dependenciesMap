@@ -25,17 +25,17 @@ Outputs in the data preparation program from data frames previously generated (c
 
                                     to be used when in a process, a new data frame is created and there is no need to return it
 
-                                    \subsection{Example}{ \code{Output_df( name = 'MasterData', data = new_data, process = 'CoV' )$f_add()} }
+                                    \subsection{Example}{\code{Output_df( name = 'MasterData', data = new_data, process = 'CoV' )$f_add()}}
                                     }
 
 \item{\code{f_return(...)}}{simply returns the data of the object :
 
                                      By default: \code{return(data)}
 
-                                     \subsection{Example} { \code{MasterData <- left_join( MasterData, Adj_CoV_Result, by = c('DMDUNIT','LOC','DMDGROUP','STARTDATE') ) } is now replace by
+                                     \subsection{Example}{\code{MasterData <- left_join( MasterData, Adj_CoV_Result, by = c('DMDUNIT','LOC','DMDGROUP','STARTDATE') ) } is now replace by
 
                                     ( \code{new_data <- left_join( MasterData, Adj_CoV_Result, by = c('DMDUNIT','LOC','DMDGROUP','STARTDATE'))} )
 
-                                    \code{MasterData <- Output_df( name = 'MasterData', data = new_data, process = 'CoV' )$f_return()} }}
+                                    \code{MasterData <- Output_df( name = 'MasterData', data = new_data, process = 'CoV' )$f_return()}}}
 }}
 

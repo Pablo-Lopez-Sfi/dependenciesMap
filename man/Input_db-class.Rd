@@ -27,7 +27,7 @@ Inputs loaded in the data preparation program from data base's tables
 
                              By default : \code{dbGetQuery( conn, query )}
 
-                             \subsection{Example} { \code{par_loc <- dbGetQuery( SCDatabase, 'select * from PAR_LOC_geoMapping' ) } is now replaced by
+                             \subsection{Example}{ \code{par_loc <- dbGetQuery( SCDatabase, 'select * from PAR_LOC_geoMapping' ) } is now replaced by
 
                             \code{par_loc <- Input_db( conn = SCDataBase, query = 'select * from PAR_LOC_geoMapping', process = 'SLA', table = 'PAR_LOC_geoMapping')$f_dbGetQuery()  } }}
 }}
