@@ -1,0 +1,11 @@
+Package: dependenciesMap
+Type: Package
+Title: Create objects in order to map dependencies in scripts
+Version: 0.1.0
+Author: Pablo Lopez
+Maintainer: Pablo Lopez <Pablo.Lopez2@Sanofi.com>
+Description: Create objects in order to map dependencies in scripts
+License: Sanofi
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.1
