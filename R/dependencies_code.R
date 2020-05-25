@@ -268,7 +268,7 @@ Output_db <- setRefClass("Output_db",
                          methods = list(
 
                            initialize = function( ..., query = NULL, FUN_DB = NULL, datecolumn = NULL, lastmonths = NULL, date = Sys.time() ){
-                             callSuper(..., date = date)
+                             callSuper(..., query = query, FUN_DB = FUN_DB, datecolumn = datecolumn, lastmonths = lastmonths, date = date)
                            },
 
                            insert_relation = function() {
