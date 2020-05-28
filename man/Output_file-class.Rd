@@ -15,6 +15,8 @@ Output files saved in the data preparation program
 
 \item{\code{data}}{: data that is going to be saved}
 
+\item{\code{data_name}}{: name of the variable that contains the data (string)}
+
 \item{\code{path}}{: path of file (NULL if omitted)}
 
 \item{\code{version}}{: version in path ('DEV/' for Development, '' for production) (NULL if omitted)}
@@ -31,6 +33,6 @@ Output files saved in the data preparation program
 
                                \subsection{Example}{\code{save( MasterData, file =  paste0( PathLoad, Version, 'SalesnFcst.Rdata' ) )} is now replaced by
 
-                               \code{Output_file(data = MasterData, file = 'SalesnFcst.Rdata', path = PathLoad, version = Version, process = 'SalesnFcst')$f_save()} }}
+                               \code{Output_file(data = MasterData, data_name = 'MasterData', file = 'SalesnFcst.Rdata', path = PathLoad, version = Version, process = 'SalesnFcst')$f_save()} }}
 }}
 

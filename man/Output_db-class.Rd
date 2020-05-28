@@ -37,7 +37,7 @@ Outputs saved in the data preparation program in data base's tables
 
                              \subsection{Example}{\code{LogWrite <- DBConnectWrite( SCDataBase, QVlocs, 'PAR_LOC_geoMapping', MyConSCDIRwrite )} is now replaced by
 
-                             \code{LogWrite <- Output_db( conn = SCDatabase, data = QVlocs, table = 'PAR_LOC_geoMapping', FUN_DB = MyConSCDIRWrite )$f_DBConnectWrite()} } }
+                             \code{LogWrite <- Output_db( conn = SCDatabase, data = QVlocs, table = 'PAR_LOC_geoMapping', FUN_DB = MyConSCDIRWrite, process = 'SLA' )$f_DBConnectWrite()} } }
 
 \item{\code{f_Myappend()}}{function \code{Myappend()} from MyFunnew.R script in data preparation program (a source must be done beforehand to MyFun.R script)
 
@@ -45,7 +45,7 @@ Outputs saved in the data preparation program in data base's tables
 
                              \subsection{Example}{\code{LogWrite <- Myappend(SCDataBase, ISL, 'cal_isl', 'DATE' , (pstmnths2run+1) )} is now replaced by
 
-                             \code{LogWrite <- Output_db( conn = SCDatabase, data = ISL, table = 'cal_isl', datecolumn = 'DATE', lastmonths = (pstmnths2run+1))$f_MyAppend()} } }
+                             \code{LogWrite <- Output_db( conn = SCDataBase, data = ISL, table = 'cal_isl', datecolumn = 'DATE', lastmonths = (pstmnths2run+1), process = 'ISL' )$f_Myappend()} } }
 
 \item{\code{f_dbSendUpdate(...)}}{function \code{dbSendQuery()} from DBI package.
 
@@ -61,6 +61,6 @@ Outputs saved in the data preparation program in data base's tables
 
                               \subsection{Example}{\code{dbWriteTable(SCDataBase, 'PAR_LOC_geoMapping', QVlocs, row.names = FALSE, append = FALSE,overwrite = TRUE, date = TRUE, ora.number = ORANUMBER)} is now replaced by 
 
-                             \code{Output_db( conn = SCDataBase, table = 'PAR_LOC_geoMapping', data = QVlocs, process = Total_Supply )$f_dbWriteTable( row.names = FALSE, append = FALSE,overwrite = TRUE, date = TRUE, ora.number = ORANUMBER )} } }
+                             \code{Output_db( conn = SCDataBase, table = 'PAR_LOC_geoMapping', data = QVlocs, process = 'Total_Supply' )$f_dbWriteTable( row.names = FALSE, append = FALSE,overwrite = TRUE, date = TRUE, ora.number = ORANUMBER )} } }
 }}
 

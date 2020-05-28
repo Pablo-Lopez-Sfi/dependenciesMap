@@ -149,7 +149,7 @@ Input_db <- setRefClass("Input_db",
 #' Inputs loaded in the data preparation program from data frames previously generated
 #'
 #' @field name : name of the data frame loaded (to be added by user)
-#' @field data : data loaded
+#' @field data : data loaded (optional attribute)
 #' @field process : process where input is loaded in the data preparation program (to be added by user)
 #'
 Input_df <- setRefClass("Input_df",
@@ -161,8 +161,8 @@ Input_df <- setRefClass("Input_df",
 
                                methods = list(
 
-                                 initialize = function(..., date = Sys.time()){
-                                   callSuper(..., date = date)
+                                 initialize = function(..., data = NULL, date = Sys.time()){
+                                   callSuper(..., data = data, date = date)
                                  },
 
                                  insert_relation = function() {
@@ -200,6 +200,7 @@ Input_df <- setRefClass("Input_df",
 #'
 #' @field file : name of the file that is going to be saved (R.data, csv, xlsx)
 #' @field data : data that is going to be saved
+#' @field data_name : name of the variable that contains the data (string)
 #' @field path : path of file (NULL if omitted)
 #' @field version : version in path ('DEV/' for Development, '' for production) (NULL if omitted)
 #' @field process : process where input is loaded in the Data preparation program (to be added by user)
@@ -211,6 +212,7 @@ Output_file <- setRefClass("Output_file",
                                          path = "ANY",
                                          version = "ANY",
                                          process = "character",
+                                         data_name = "character",
                                          date = "ANY"),
 
                            methods = list(
@@ -232,9 +234,10 @@ Output_file <- setRefClass("Output_file",
                               "function \\code{save()} \n
                               By default : \\code{save( data, paste0(path, version, file), ... )}\n
                                \\subsection{Example}{\\code{save( MasterData, file =  paste0( PathLoad, Version, 'SalesnFcst.Rdata' ) )} is now replaced by\n
-                               \\code{Output_file(data = MasterData, file = 'SalesnFcst.Rdata', path = PathLoad, version = Version, process = 'SalesnFcst')$f_save()} }"
+                               \\code{Output_file(data = MasterData, data_name = 'MasterData', file = 'SalesnFcst.Rdata', path = PathLoad, version = Version, process = 'SalesnFcst')$f_save()} }"
                                insert_relation()
-                               save(data, file = paste0(path, version, file),...)
+                               assign(data_name,data)
+                               save( list = data_name , file = paste0(path, version, file),...)
                              }
 
                            )
@@ -284,7 +287,7 @@ Output_db <- setRefClass("Output_db",
                              "function \\code{DBConnectWrite()} from MyFunnew.R script in data preparation program (a source must be done beforehand to MyFun.R script)\n
                              By defaut : \\code{DBConnectWrite( conn, data, table, FUN_DB )}\n
                              \\subsection{Example}{\\code{LogWrite <- DBConnectWrite( SCDataBase, QVlocs, 'PAR_LOC_geoMapping', MyConSCDIRwrite )} is now replaced by\n
-                             \\code{LogWrite <- Output_db( conn = SCDatabase, data = QVlocs, table = 'PAR_LOC_geoMapping', FUN_DB = MyConSCDIRWrite )$f_DBConnectWrite()} } "
+                             \\code{LogWrite <- Output_db( conn = SCDatabase, data = QVlocs, table = 'PAR_LOC_geoMapping', FUN_DB = MyConSCDIRWrite, process = 'SLA' )$f_DBConnectWrite()} } "
                              insert_relation()
                              DBConnectWrite(conn, data, table, FUN_DB, ...)
                            },
@@ -293,7 +296,7 @@ Output_db <- setRefClass("Output_db",
                              "function \\code{Myappend()} from MyFunnew.R script in data preparation program (a source must be done beforehand to MyFun.R script)\n
                              By defaut : \\code{Myappend(conn, data, table, datecolumn, lastmonths)}\n
                              \\subsection{Example}{\\code{LogWrite <- Myappend(SCDataBase, ISL, 'cal_isl', 'DATE' , (pstmnths2run+1) )} is now replaced by\n
-                             \\code{LogWrite <- Output_db( conn = SCDatabase, data = ISL, table = 'cal_isl', datecolumn = 'DATE', lastmonths = (pstmnths2run+1))$f_MyAppend()} } "
+                             \\code{LogWrite <- Output_db( conn = SCDataBase, data = ISL, table = 'cal_isl', datecolumn = 'DATE', lastmonths = (pstmnths2run+1), process = 'ISL' )$f_Myappend()} } "
                              insert_relation()
                              Myappend(conn, data, table, datecolumn, lastmonths)
                            },
@@ -311,7 +314,7 @@ Output_db <- setRefClass("Output_db",
                              "function \\code{dbWriteTable()} from DBI package.\n
                               By defaut : \\code{dbWriteTable( conn, table, data, ... )}\n
                               \\subsection{Example}{\\code{dbWriteTable(SCDataBase, 'PAR_LOC_geoMapping', QVlocs, row.names = FALSE, append = FALSE,overwrite = TRUE, date = TRUE, ora.number = ORANUMBER)} is now replaced by \n
-                             \\code{Output_db( conn = SCDataBase, table = 'PAR_LOC_geoMapping', data = QVlocs, process = Total_Supply )$f_dbWriteTable( row.names = FALSE, append = FALSE,overwrite = TRUE, date = TRUE, ora.number = ORANUMBER )} } "
+                             \\code{Output_db( conn = SCDataBase, table = 'PAR_LOC_geoMapping', data = QVlocs, process = 'Total_Supply' )$f_dbWriteTable( row.names = FALSE, append = FALSE,overwrite = TRUE, date = TRUE, ora.number = ORANUMBER )} } "
                              insert_relation()
                              dbWriteTable(conn, table, data, ...)
                            }
