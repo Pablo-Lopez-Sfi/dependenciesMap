@@ -13,7 +13,7 @@ Inputs loaded in the data preparation program from data frames previously genera
 \describe{
 \item{\code{name}}{: name of the data frame loaded (to be added by user)}
 
-\item{\code{data}}{: data loaded}
+\item{\code{data}}{: data loaded (optional attribute)}
 
 \item{\code{process}}{: process where input is loaded in the data preparation program (to be added by user)}
 }}
@@ -27,7 +27,7 @@ Inputs loaded in the data preparation program from data frames previously genera
 
                                     \subsection{Example}{ \code{Input_df( name = 'MasterData', data = MasterData, process = 'Future_Forecast' )$f_add()}}}
 
-\item{\code{f_return(...)}}{simply returns the data of the object 
+\item{\code{f_return()}}{simply returns the data of the object 
 
                                    By default : \code{return(data)}
 

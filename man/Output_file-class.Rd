@@ -34,5 +34,21 @@ Output files saved in the data preparation program
                                \subsection{Example}{\code{save( MasterData, file =  paste0( PathLoad, Version, 'SalesnFcst.Rdata' ) )} is now replaced by
 
                                \code{Output_file(data = MasterData, data_name = 'MasterData', file = 'SalesnFcst.Rdata', path = PathLoad, version = Version, process = 'SalesnFcst')$f_save()} }}
+
+\item{\code{f_write.csv(...)}}{function \code{write.csv()} 
+
+                              By default : \code{write.csv(data, paste0( path, version, file ), ... )} 
+
+                              \subsection{Example}{\code{write.csv(FutFcst,paste0(PathLoad,'Future_Fcst.csv'), row.names = FALSE, na = '')} is now replaced by
+
+                              \code{Output_file(data = FutFcst, file = 'Future_Fcst.csv', path = PathLoad, process = 'Forecast')$f_write.csv(row.names = FALSE, na = '')} }}
+
+\item{\code{f_write.xlsx(...)}}{function \code{write.xlsx()} from openxlsx package
+
+                               By default : \code{write.xlsx(data, paste0( path, version, file ), ... )} 
+
+                              \subsection{Example}{\code{write.xlsx(FutFcst, paste0(PathLoad,'Future_Fcst.xlsx') )} is now replaced by
+
+                              \code{Output_file(data = FutFcst, file = 'Future_Fcst.xlsx', path = PathLoad, process = 'Forecast')$f_write.xlsx()} }}
 }}
 

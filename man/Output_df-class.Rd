@@ -28,7 +28,7 @@ Outputs in the data preparation program from data frames previously generated (c
                                     \subsection{Example}{\code{Output_df( name = 'MasterData', data = new_data, process = 'CoV' )$f_add()}}
                                     }
 
-\item{\code{f_return(...)}}{simply returns the data of the object :
+\item{\code{f_return()}}{simply returns the data of the object :
 
                                      By default: \code{return(data)}
 

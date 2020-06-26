@@ -33,7 +33,6 @@ init_dependencies <- function(){
 
 
 
-
 #' Inputs loaded in the data preparation program from files
 #'
 #' @field file : name of the file loaded (R.data, csv, xlsx)
@@ -132,13 +131,13 @@ Input_db <- setRefClass("Input_db",
                             assign("inputs_db", c(inputs_db , .self),  envir = .GlobalEnv)
                           },
 
-                          f_dbGetQuery = function(){
+                          f_dbGetQuery = function(...){
                             "function \\code{dbGetQuery()} from DBI package\n
-                             By default : \\code{dbGetQuery( conn, query )}\n
+                             By default : \\code{dbGetQuery( conn, query, ... )}\n
                              \\subsection{Example}{ \\code{par_loc <- dbGetQuery( SCDatabase, 'select * from PAR_LOC_geoMapping' ) } is now replaced by\n
                             \\code{par_loc <- Input_db( conn = SCDataBase, query = 'select * from PAR_LOC_geoMapping', process = 'SLA', table = 'PAR_LOC_geoMapping')$f_dbGetQuery()  } }"
                             insert_relation()
-                            dbGetQuery(conn, query)
+                            dbGetQuery(conn, query, ...)
                           }
 
                         )
@@ -174,7 +173,7 @@ Input_df <- setRefClass("Input_df",
                                    assign("inputs_df", c(inputs_df , .self),  envir = .GlobalEnv)
                                  },
 
-                                 f_return = function(...){
+                                 f_return = function(){
                                    "simply returns the data of the object \n
                                    By default : \\code{return(data)}\n
                                    \\subsection{Example}{\\code{MasterData2 <- MasterData}  is now replaced by\n
@@ -212,13 +211,13 @@ Output_file <- setRefClass("Output_file",
                                          path = "ANY",
                                          version = "ANY",
                                          process = "character",
-                                         data_name = "character",
+                                         data_name = "ANY",
                                          date = "ANY"),
 
                            methods = list(
 
-                             initialize = function( ..., path = NULL, version = NULL, date = Sys.time() ){
-                               callSuper(..., path = path, version = version, date = date)
+                             initialize = function( ..., data_name = NULL, path = NULL, version = NULL, date = Sys.time() ){
+                               callSuper(..., data_name = data_name, path = path, version = version, date = date)
                              },
 
                              insert_relation = function() {
@@ -238,6 +237,24 @@ Output_file <- setRefClass("Output_file",
                                insert_relation()
                                assign(data_name,data)
                                save( list = data_name , file = paste0(path, version, file),...)
+                             },
+
+                             f_write.csv = function(...){
+                               "function \\code{write.csv()} \n
+                              By default : \\code{write.csv(data, paste0( path, version, file ), ... )} \n
+                              \\subsection{Example}{\\code{write.csv(FutFcst,paste0(PathLoad,'Future_Fcst.csv'), row.names = FALSE, na = '')} is now replaced by\n
+                              \\code{Output_file(data = FutFcst, file = 'Future_Fcst.csv', path = PathLoad, process = 'Forecast')$f_write.csv(row.names = FALSE, na = '')} }"
+                               insert_relation()
+                               write.csv(data, paste0(path, version, file),...)
+                             },
+
+                             f_write.xlsx = function(...){
+                               "function \\code{write.xlsx()} from openxlsx package\n
+                               By default : \\code{write.xlsx(data, paste0( path, version, file ), ... )} \n
+                              \\subsection{Example}{\\code{write.xlsx(FutFcst, paste0(PathLoad,'Future_Fcst.xlsx') )} is now replaced by\n
+                              \\code{Output_file(data = FutFcst, file = 'Future_Fcst.xlsx', path = PathLoad, process = 'Forecast')$f_write.xlsx()} }"
+                               insert_relation()
+                               openxlsx::write.xlsx(data, paste0(path, version, file),...)
                              }
 
                            )
@@ -285,7 +302,7 @@ Output_db <- setRefClass("Output_db",
 
                            f_DBConnectWrite = function(...){
                              "function \\code{DBConnectWrite()} from MyFunnew.R script in data preparation program (a source must be done beforehand to MyFun.R script)\n
-                             By defaut : \\code{DBConnectWrite( conn, data, table, FUN_DB )}\n
+                             By defaut : \\code{DBConnectWrite( conn, data, table, FUN_DB, ... )}\n
                              \\subsection{Example}{\\code{LogWrite <- DBConnectWrite( SCDataBase, QVlocs, 'PAR_LOC_geoMapping', MyConSCDIRwrite )} is now replaced by\n
                              \\code{LogWrite <- Output_db( conn = SCDatabase, data = QVlocs, table = 'PAR_LOC_geoMapping', FUN_DB = MyConSCDIRWrite, process = 'SLA' )$f_DBConnectWrite()} } "
                              insert_relation()
@@ -352,7 +369,7 @@ Output_df <- setRefClass("Output_df",
                                     assign("outputs_df", c(outputs_df , .self),  envir = .GlobalEnv)
                                   },
 
-                                  f_return = function(...){
+                                  f_return = function(){
                                     "simply returns the data of the object :\n
                                      By default: \\code{return(data)}\n
                                      \\subsection{Example}{\\code{MasterData <- left_join( MasterData, Adj_CoV_Result, by = c('DMDUNIT','LOC','DMDGROUP','STARTDATE') ) } is now replace by\n

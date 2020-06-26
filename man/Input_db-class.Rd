@@ -23,9 +23,9 @@ Inputs loaded in the data preparation program from data base's tables
 \section{Methods}{
 
 \describe{
-\item{\code{f_dbGetQuery()}}{function \code{dbGetQuery()} from DBI package
+\item{\code{f_dbGetQuery(...)}}{function \code{dbGetQuery()} from DBI package
 
-                             By default : \code{dbGetQuery( conn, query )}
+                             By default : \code{dbGetQuery( conn, query, ... )}
 
                              \subsection{Example}{ \code{par_loc <- dbGetQuery( SCDatabase, 'select * from PAR_LOC_geoMapping' ) } is now replaced by
 

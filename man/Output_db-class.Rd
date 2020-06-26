@@ -33,7 +33,7 @@ Outputs saved in the data preparation program in data base's tables
 \describe{
 \item{\code{f_DBConnectWrite(...)}}{function \code{DBConnectWrite()} from MyFunnew.R script in data preparation program (a source must be done beforehand to MyFun.R script)
 
-                             By defaut : \code{DBConnectWrite( conn, data, table, FUN_DB )}
+                             By defaut : \code{DBConnectWrite( conn, data, table, FUN_DB, ... )}
 
                              \subsection{Example}{\code{LogWrite <- DBConnectWrite( SCDataBase, QVlocs, 'PAR_LOC_geoMapping', MyConSCDIRwrite )} is now replaced by
 
